@@ -1,3 +1,9 @@
+## 👋 Welcome!
+
+I have created this repo for the scripts that I use to monitor the power consumption at my home 🏡.
+
+It is a personal project, but please reach out if there is anything to improve, or something that you find interesting.
+
 ## Installation
 
 ```bash
