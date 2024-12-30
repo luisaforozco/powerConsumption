@@ -21,6 +21,16 @@ It is a personal project, but please reach out if there is anything to improve, 
 
 Follow the instructions for [Tuya Device preparation from TuyaPower](https://github.com/jasonacox/tuyapower#tuya-device-preparation) and read the **Notes**. They are pertinent for using these scripts after the first time.
 
+```bash
+python3 -m tinytuya wizard
+# or with the -nocolor option
+python -m tinytuya wizard -nocolor
+```
+
+**💡 Tip**
+- The API Key and secret can be found in the Cloud project in the tuya portal, or
+- If you have done this before and you have to do it again because you restarted the wifi router, you can read `apiKey` and `apiSecret` from `tinytuya.json`.
+
 As a result, you should now have in the root folder the following files:
 
 - `devices.json` : most important one - contains the keys.

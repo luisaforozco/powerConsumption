@@ -21,7 +21,7 @@ PLOT_REAL_TIME = False
 
 # Load Device Keys from Tuya JSON file
 print("Loading Tuya Keys...")
-f = open('../../devices.json',"r")
+f = open('../devices.json',"r")
 data = demjson.decode(f.read())
 f.close()
 print("    %s%s device keys loaded%s"%(subbold, len(data), normal))
@@ -44,13 +44,14 @@ for i in data:
                            + '.txt', 'w')
         output_file.write("%s\t%s\t%s\t%s\t%s\n"%("#Time", "W", "mA", "V","kWh"))
         times, watts, power_consumption = [], [], []
+        kwh = 0
         time_start = time.time()
         time_iteration = time_start
-        total_measure_time = 60 * 3 # minutes
+        total_measure_time = 60 * 5.5 # minutes
         while (time.time() - time_start < total_measure_time*60):
             (on, w, mA, V, err) = tuyapower.deviceInfo(i['id'], i['ip'], i['key'], i['version'])
             times.append(time.time() - time_start)
-            kwh = (w/1000) * (time.time() - time_iteration)/3600
+            kwh += (w/1000) * (time.time() - time_iteration)/3600
             time_iteration = time.time()
             power_consumption.append(kwh)
             watts.append(w)
@@ -75,6 +76,6 @@ for i in data:
                 #plt.show()
                 plt.draw()
                 plt.pause(0.001)
-            time.sleep(10) # wait X seconds before polling again
+            time.sleep(5) # wait X seconds before polling again
         output_file.close()
 print("END")
